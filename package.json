@@ -5,10 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "rimraf dist && webpack",
-    "serve": "rimraf dist && webpack && serve dist -p 3030",
-    "start": "nodemon ./src/NodeExpress/server.js"
+    "start": "rimraf dist && webpack && nodemon ./src/NodeExpress/server.js"
   },
   "keywords": [],
   "author": "Tom Fridental",
