@@ -53,7 +53,7 @@ class SearchPage extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                searchStr: str,
+                name: str,
             })
         })
         .then((res,err) => {
@@ -70,7 +70,6 @@ class SearchPage extends Component {
     fetch(`http://localhost:3030/top_ten`)
     .then((res) => res.json())
     .then((res) => this.setState({topTen: res.list}))
-    .then(() => console.log(this.state.topTen))
     .catch(err => console.log('Your Error is: ',err))
     }
 
@@ -93,7 +92,7 @@ class SearchPage extends Component {
                         <ResUl>
                             {
                                 this.state.topTen.map((str,i) => 
-                                <li key={`res${i}`}>{`${i+1}. ${str.searchStr}`}</li>    
+                                <li key={`res${i}`}>{`${i+1}. ${str.name}`}</li>    
                                 )
                             }
                         </ResUl>

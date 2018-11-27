@@ -34,7 +34,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <TopBar> <Links /> </TopBar>
+                    <TopBar />
                     <Switch>
                         <Route exact path="/" render={(props) => <SearchPage chosenItem={this.chosenItem} />} />
                         <Route path="/result" render={(props) => <Display {...this.state.selectedItem} />} />
