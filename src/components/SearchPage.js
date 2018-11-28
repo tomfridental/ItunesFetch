@@ -28,15 +28,15 @@ class SearchPage extends Component {
     }
 
     searchOnItunes() {
-        if(this.state.searchValue.length > 0){
-        const searchKey = this.state.searchValue.replace(/ /, "+");
-        fetch(`https://itunes.apple.com/search?term=${searchKey}&limit=25`)
-            .then((res) => res.json())
-            .then(res => this.setState({ fetchedResult: res.results }))
-            .then(() => this.setState({ fetchDone: true }))
-            .catch(err => console.log('Your Error is:', err));
+        if (this.state.searchValue.length > 0) {
+            const searchKey = this.state.searchValue.replace(/ /, "+");
+            fetch(`https://itunes.apple.com/search?term=${searchKey}&limit=25`)
+                .then((res) => res.json())
+                .then(res => this.setState({ fetchedResult: res.results }))
+                .then(() => this.setState({ fetchDone: true }))
+                .catch(err => console.log('Your Error is:', err));
 
-        this.updateSearchParams(this.state.searchValue)
+            this.updateSearchParams(this.state.searchValue)
         }
     }
 
@@ -56,21 +56,21 @@ class SearchPage extends Component {
                 name: str,
             })
         })
-        .then((res,err) => {
-            if(res.status === 201) console.log('Response: ',res);
-            else console.log('Error: ',err);
-        })
+            .then((res, err) => {
+                if (res.status === 201) console.log('Response: ', res);
+                else console.log('Error: ', err);
+            })
     }
 
-    displayTopTen(){
-        this.setState({showTopTen: !this.state.showTopTen})    
+    displayTopTen() {
+        this.setState({ showTopTen: !this.state.showTopTen })
     }
 
-    componentDidMount(){
-    fetch(`http://localhost:3030/top_ten`)
-    .then((res) => res.json())
-    .then((res) => this.setState({topTen: res.list}))
-    .catch(err => console.log('Your Error is: ',err))
+    componentDidMount() {
+        fetch(`http://localhost:3030/top_ten`)
+            .then((res) => res.json())
+            .then((res) => this.setState({ topTen: res.list }))
+            .catch(err => console.log('Your Error is: ', err))
     }
 
 
@@ -89,13 +89,13 @@ class SearchPage extends Component {
                         <Search_Button type="button" onClick={this.searchOnItunes}>Run a Search</Search_Button>
                         <TopTenButton type="button" onClick={this.displayTopTen}>Top Ten Searches</TopTenButton>
                         {this.state.showTopTen &&
-                        <ResUl>
-                            {
-                                this.state.topTen.map((str,i) => 
-                                <li key={`res${i}`}>{`${i+1}. ${str.name}`}</li>    
-                                )
-                            }
-                        </ResUl>
+                            <ResUl>
+                                {
+                                    this.state.topTen.map((str, i) =>
+                                        <li key={`res${i}`}>{`${i + 1}. ${str.name}`}</li>
+                                    )
+                                }
+                            </ResUl>
                         }
                     </Search_Form>
                 </SearchBar>
